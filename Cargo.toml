@@ -1,0 +1,21 @@
+[package]
+name = "keel"
+version = "0.1.0"
+edition = "2021"
+description = "Torrent client with its own installer"
+license = "MIT OR Apache-2.0"
+publish = false
+
+[dependencies]
+# Software rendering only. The window does not use Qt, GTK, or a GPU stack.
+iced = { version = "0.14", default-features = false, features = ["tiny-skia", "crisp", "thread-pool", "x11", "wayland"] }
+# The download engine. No web UI and no HTTP API; Keel talks to it over a local socket.
+librqbit = { version = "9.0.1", default-features = false, features = ["default-tls"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["rt-multi-thread", "net", "io-util", "macros", "time", "sync"] }
+libc = "0.2"
+
+[dev-dependencies]
+# Headless clicks and frames for the wizard. Uses the same tiny-skia renderer.
+iced_test = "0.14"
